@@ -1,0 +1,43 @@
+create_ical <- function(dataTable) {  
+  Subject<-c()
+  Start_Date<-c()
+  Start_Time<-c()
+  End_Date<-c()
+  End_Time<-c()
+  All_Day_Event<- c()
+  Description<-c()
+  Location<- c()
+  Private<-c()
+  
+  Subject <- dataTable[, list()]
+  Start_Date<-dataTable[, list()]
+  Start_Time<-dataTable[, list()]
+  End_Date<-dataTable[, list()]
+  End_Time<-dataTable[, list()]
+  x <- as.integer(0)
+  for (x < nrow(dataTable)) {
+    if (dataTable[x, 5] == null) {
+      All_Day_Event<- c(All_Day_Event, "True")
+    } else {
+      All_Day_Event<- c(All_Day_Event, "False")
+    }
+    x <- x + 1
+  }
+  Description<-Subject
+  Location<- dataTable[, list()]
+  x <- as.integer(0)
+  for (x < nrow(dataTable)) {
+    Private<- c(Private, "False")
+    x <- x + 1
+  }
+  
+  cal<- cbind(Subject, Start_Date, Start_Time, End_Date, End_Time, All_Day_Event, Description, Location, Private)
+  
+  colnames(cal)[2] <- "Start Date"
+  colnames(cal)[3] <- "Start Time"
+  colnames(cal)[4] <- "End Date"
+  colnames(cal)[5] <- "End Time"
+  colnames(cal)[6] <- "All Day Event"
+
+  write.csv(cal, "ics_event.csv")
+}
