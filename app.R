@@ -41,7 +41,7 @@ server <- function(input, output) {
         } else {
         cFrame <- ic_read(infile$name) 
         # the above returns a char vector with names of objects loaded
-        cFrameFinal <-  data.frame(cFrame[substring(cFrame$DTSTART,1,10) > Sys.Date() | cFrame$'DTSTART;VALUE=DATE' > Sys.Date(), names(cFrame) %in% c("LOCATION","DTSTART","DTEND","DTSTART;VALUE=DATE","DTEND;VALUE=DATE")])
+        cFrameFinal <-  data.frame(cFrame[substring(cFrame$DTSTART,1,10) > Sys.Date() | cFrame$'DTSTART;VALUE=DATE' > Sys.Date(), names(cFrame) %in% c("LOCATION","DTSTART","DTEND","SUMMARY","DTSTART;VALUE=DATE","DTEND;VALUE=DATE")])
         #cFrameFinal <- cFrameFinal[cFrameFinal$LOCATION != "NA",1:2]
         # the above finds the first object and returns it
         return(cFrameFinal)
