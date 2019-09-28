@@ -1,14 +1,15 @@
-mosquito_algorithm <- function(WEATHER DATA) {
+mosquito_algorithm <- function(weatherData, rowNumber) {
+  data <- weatherData
   likelihoodOfMosquitoes <- as.integer()
-  temperature <- as.integer("temp")
-  dewpoint <- as.integer("dewpt")
-  yesterdayPrecip <- precip > 1
-  todayPrecip <- pop > 19
+  temperature <- as.integer(weatherData[rowNumber,3])
+  dewpoint <- as.integer("weatherData[rowNumber,4]")
+  yesterdayPrecip <- weatherData[rowNumber,5] > 1
+  todayPrecip <- weatherData[rowNumber,6] > 19
 
 
-  if (temp < 81 && temp > 65) {
+  if (temp < 81 & temp > 65) {
     likelihoodOfMosquitoes += 2
-  } else if (temp < 90 || temp > 55) {
+  } else if (temp < 95 | temp > 55) {
     likelihoodOfMosquitoes +=1
   }
 
