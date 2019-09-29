@@ -1,10 +1,9 @@
 mosquito_algorithm <- function(weatherData, rowNumber) {
   data <- weatherData
   likelihoodOfMosquitoes <- as.integer()
-  temperature <- as.integer(weatherData[rowNumber,3])
-  dewpoint <- as.integer("weatherData[rowNumber,4]")
-  yesterdayPrecip <- weatherData[rowNumber,5] > 1
-  todayPrecip <- weatherData[rowNumber,6] > 19
+  temperature <- as.integer(weatherData[rowNumber,7])
+  dewpoint <- as.integer(weatherData[rowNumber,8])
+  todayPrecip <- weatherData[rowNumber,9] > 19
 
 
   if (temp < 81 & temp > 65) {
@@ -22,12 +21,20 @@ mosquito_algorithm <- function(weatherData, rowNumber) {
   }
 
   if (todayPrecip) {
-    if (likelihoodOfMosquitoes > 3) {
+    if (likelihoodOfMosquitoes > 2) {
       likelihoodOfMosquitoes <- 1
     } else {
       likelihoodOfMosquitoes <- 0
     }
   }
 
-  return likelihoodOfMosquitoes
+  if (likelihoodOfMosquitoes == 3) {
+    return "Mosquitoes: Extreme"
+  } else if (likelihoodOfMosquitoes == 2) {
+    return "Mosquitoes: High"
+  } else if(likelihoodOfMosquitoes == 1) {
+    return "Mosquitoes: Moderate"
+  } else {
+    return "Mosquitoes: Low-Negligible"
+  }
 }
